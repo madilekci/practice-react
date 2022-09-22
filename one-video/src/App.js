@@ -2,6 +2,7 @@ import './App.css';
 
 // components
 import AddUserForm from './components/add-user-form';
+import UsersTable from './components/users-table/users-table';
 
 function App() {
   return (
@@ -9,6 +10,8 @@ function App() {
       <h5>One Video App</h5>
       <hr/>
       <AddUserForm/>
+      <hr/>
+      <UsersTable/>
     </div>
   );
 }
