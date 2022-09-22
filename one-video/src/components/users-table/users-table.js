@@ -2,7 +2,7 @@ import User from '../user';
 import './users-table.css';
 
 function UsersTable(props) {
-    const { users } = props;
+    const { users, deleteUser } = props;
     return (
         <div className="table-responsive-md">
             <table className="table table-striped">
@@ -15,8 +15,7 @@ function UsersTable(props) {
                     </tr>
                     {
                         users.map(user => {
-                            const { id, name, email } = user;
-                            return <User key={id} id={id} name={name} email={email} />
+                            return <User key={user.id} user={user} deleteUser = {deleteUser}  />
                         })
                     }
                 </thead>
