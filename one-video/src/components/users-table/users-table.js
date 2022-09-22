@@ -11,7 +11,7 @@ function UsersTable(props) {
                         <th scope="col">id</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Delete</th>
+                        <th scope="col"></th>
                     </tr>
                     {
                         users.map(user => {

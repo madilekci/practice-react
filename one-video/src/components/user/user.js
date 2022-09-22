@@ -1,6 +1,4 @@
 import './user.css';
-import React, {useState} from "react";
-
 
 function User(props) {
     const { id, name, email} = props.user;
@@ -15,7 +13,6 @@ function User(props) {
             </td>
         </tr>
     );
-    return
 }
 
 export default User;
