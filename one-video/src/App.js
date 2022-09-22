@@ -2,7 +2,7 @@ import './App.css';
 
 // components
 import AddUserForm from './components/add-user-form';
-import UsersTable from './components/users-table/users-table';
+import UsersTable from './components/users-table';
 
 function App() {
 
@@ -30,7 +30,7 @@ function App() {
       <hr/>
       <AddUserForm/>
       <hr/>
-      <UsersTable users = {users} />
+      <UsersTable users = {users}  />
     </div>
   );
 }
