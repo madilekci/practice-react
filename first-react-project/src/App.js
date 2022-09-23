@@ -5,7 +5,7 @@ import React, {useState} from "react";
 import AddUserForm from './components/add-user-form';
 import UsersTable from './components/users-table';
 
-let users = [
+const defaultUsers = [
   {
     id: "1",
     name: "Muhammed Ali Dilekçi",
@@ -24,50 +24,31 @@ let users = [
 ];
 
 function App() {
-  const [state, setState] = useState({
-    users
-  });
-  console.log(state);
+  const [users, setUsers] = useState(defaultUsers);
+
   const deleteUser = (id) => {
-    const updatedUsers = state.users.filter((user) => user.id !== id);
-    setState({
-      users : updatedUsers
-    });
+    const updatedUsers = users.filter((user) => user.id !== id);
+    setUsers(updatedUsers);
   }
   const addUser = (user) => {
-    const {users} = state;
+    // find new id and add it to user
+    const lastUserID = users[users.length-1]?.id ?? 0;
 
-    if ( !users.find(u => u.email === user.email) ) {
-      // find new id and add it to user
-      const lastUser = users[users.length-1];
-      user.id = parseInt(lastUser.id)+1;
-
-      // add user to state.users
-      const updatedUsers = users;
-      updatedUsers.push(user);
-      setState({
-        users : updatedUsers
-      })
-    }else {
-      alert('There is already a user with same email');
+    const newUser = {
+      ...user,
+      id: parseInt(lastUserID)+1
     }
-  }
 
-  let usersTableProps = {
-    users : state.users,
-    deleteUser
-  }
-  let addUserProps = {
-    addUser
+    setUsers([...users, newUser])
   }
 
   return (
     <div className="container">
-      <h5>One Video App</h5>
+      <h5>First react app</h5>
       <hr/>
-      <AddUserForm {...addUserProps}/>
+      <AddUserForm addUser = {addUser}/>
       <hr/>
-      <UsersTable {...usersTableProps}  />
+      <UsersTable users = {users} deleteUser = {deleteUser}  />
     </div>
   );
 }

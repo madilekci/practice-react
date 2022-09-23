@@ -1,8 +1,7 @@
 import User from '../user';
 import './users-table.css';
 
-function UsersTable(props) {
-    const { users, deleteUser } = props;
+function UsersTable({ users, deleteUser }) {
     return (
         <div className="table-responsive-md">
             <table className="table table-striped">

@@ -1,7 +1,7 @@
 import './add-user-form.css';
 import React, { useState } from 'react';
 
-function AddUserForm(props) {
+function AddUserForm({addUser}) {
 
   const [userForm, setUserForm] = useState({
     name: "",
@@ -15,7 +15,7 @@ function AddUserForm(props) {
   const onSubmitClick = (e) => {
     e.preventDefault();
     if (userForm.name !== "" && userForm.email !== "") {
-      props.addUser(userForm);
+      addUser(userForm);
     }
   }
 
