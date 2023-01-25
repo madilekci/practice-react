@@ -5,22 +5,47 @@ function Square ({ value, onSquareClick }) {
 }
 
 export default function Board() {
+  const players = [
+    {
+      id: 0,
+      symbol: 'X',
+      name: 'Player 1'
+    },
+    {
+      id: 1,
+      symbol: 'O',
+      name: 'Player 2'
+    }
+  ]
+
   const [squares, setSquares] = useState(Array(9).fill(null));
+  // used to determine whose turn to play, player1 or player2
+  const [currentPlayer, setCurrentPlayer] = useState(players[0])
 
   const handleSquareClick = i => {
-    console.log(`Square ${i} is clicked`);
+
+    // do nothing if square is already filled with a symbol
+    if (squares[i]) {
+      return;
+    }
 
     // Create a copy of state
     const nextSquares = squares.slice();
 
-    // update the clicked square's value
-    nextSquares[i] = (nextSquares[i] == null ? 'X' : null);
+    // update the clicked square's value to current player's symbol if the square is empty
+    nextSquares[i] = currentPlayer.symbol;
+
+    // flip the currentUser
+    currentPlayer.id == 0 ? setCurrentPlayer(players[1]) : setCurrentPlayer(players[0]);
 
     setSquares(nextSquares);
   }
 
   return (
     <div>
+      <div style={{marginBottom: '40px', padding:'20px', border: '1px solid', display: 'inline-block'}}>
+        { `${ currentPlayer.id } | ${ currentPlayer.name } | ${ currentPlayer.symbol }` }
+      </div>
       <div className="board-row">
         <Square value={squares[0]} onSquareClick={() => handleSquareClick(0)} />
         <Square value={squares[1]} onSquareClick={() => handleSquareClick(1)} />
