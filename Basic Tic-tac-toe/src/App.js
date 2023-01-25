@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+// helper for calculating a winner
+import calculateWinner from './calculate-winner.js';
+
 function Square ({ value, onSquareClick }) {
   return <button onClick={onSquareClick} className="square">{value}</button>
 }
@@ -22,10 +25,12 @@ export default function Board() {
   // used to determine whose turn to play, player1 or player2
   const [currentPlayer, setCurrentPlayer] = useState(players[0])
 
+  const winner = calculateWinner(squares, players)
+
   const handleSquareClick = i => {
 
-    // do nothing if square is already filled with a symbol
-    if (squares[i]) {
+    // do nothing if square is already filled with a symbol or someone won the game
+    if (squares[i] || calculateWinner(squares, players)) {
       return;
     }
 
@@ -35,10 +40,11 @@ export default function Board() {
     // update the clicked square's value to current player's symbol if the square is empty
     nextSquares[i] = currentPlayer.symbol;
 
+    setSquares(nextSquares);
+
     // flip the currentUser
     currentPlayer.id == 0 ? setCurrentPlayer(players[1]) : setCurrentPlayer(players[0]);
 
-    setSquares(nextSquares);
   }
 
   return (
@@ -61,6 +67,12 @@ export default function Board() {
         <Square value={squares[7]} onSquareClick={() => handleSquareClick(7)} />
         <Square value={squares[8]} onSquareClick={() => handleSquareClick(8)} />
       </div>
+      {
+        winner &&
+        <div style={{marginTop: '40px', padding:'20px', border: '1px solid', display: 'inline-block'}}>
+          { `${winner.name} won the game` }
+        </div>
+      }
     </div>
   );
 }
