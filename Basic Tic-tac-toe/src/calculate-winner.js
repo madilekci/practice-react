@@ -17,7 +17,7 @@ const calculateWinner = (squares, players) => {
         // check if there is any line that is filled with same symbol
         if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
             // find which player won the game
-            return (squares[a] == players[0].symbol) ? players[0] : players[1]
+            return (squares[a] === players[0].symbol) ? players[0] : players[1]
         }
     }
     return null;
