@@ -65,37 +65,62 @@ export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   // used to determine whose turn to play, player1 or player2
   const [currentPlayer, setCurrentPlayer] = useState(players[0])
+  const [currentMove, setCurrentMove] = useState(0);
 
-  const currentSquares = history[history.length - 1];
+  const currentSquares = history[currentMove];
   const winner = calculateWinner(currentSquares, players)
+  function jumpTo(nextMove) {
+    setCurrentMove(nextMove);
+    nextMove % 2 === 0 ? setCurrentPlayer(players[0]) : setCurrentPlayer(players[1])
+  }
 
+  const moves = history.map((squares, move) => {
+    let description;
+    if (move > 0) {
+      description = 'Go to move #' + move;
+    } else {
+      description = 'Go to game start';
+    }
+    return (
+      <li key={move}>
+        <button onClick={() => jumpTo(move)}>{description}</button>
+      </li>
+    );
+  });
 
   function handleMove(nextSquares){
     // do nothing if someone won the game
     if (calculateWinner(currentSquares, players)) {
       return;
     }
-    setHistory([...history, nextSquares]);
+
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    setHistory(nextHistory);
+    setCurrentMove(nextHistory.length - 1);
 
     // flip the currentUser
-    currentPlayer.id == 0 ? setCurrentPlayer(players[1]) : setCurrentPlayer(players[0]);
+    currentPlayer.id === 0 ? setCurrentPlayer(players[1]) : setCurrentPlayer(players[0]);
   }
 
   return (
     <div className='container'>
       <div className="game">
-        <div className='playerInfo'>
-          { `${ currentPlayer.name } | ${ currentPlayer.symbol }` }
-        </div>
-        <div className="gameBoard">
-          <Board squares={currentSquares} onMove={handleMove} currentPlayer={currentPlayer} />
-        </div>
-        {
-          winner &&
-          <div className='winnerCard'>
-            { `${winner.name} won the game` }
+        <div className='row'>
+          <div>
+            <Board squares={currentSquares} onMove={handleMove} currentPlayer={currentPlayer} />
           </div>
-        }
+          <div>
+            <ol className='history'>{moves}</ol>
+          </div>
+        </div>
+          <div className='gameStatus'>
+            {
+              winner ?
+              `${winner.name} won the game 🔥👏🏻`
+              :
+              `${ currentPlayer.name } | ${ currentPlayer.symbol }`
+            }
+          </div>
       </div>
     </div>
   );

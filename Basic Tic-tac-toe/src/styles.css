@@ -15,6 +15,11 @@ body {
   justify-content: center;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
 .square {
   background: #fff;
   border: 1px solid #999;
@@ -35,27 +40,26 @@ body {
   content: '';
   display: table;
 }
+
 .game {
   min-width: 400px;
   padding: 30px;
-  background-color: rgb(150, 94, 60);
+  background-color: rgba(4, 4, 4, 0.4);
   display: inline-flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 8px;
 }
 
-.playerInfo {
-  margin-bottom: 40px;
-  padding: 20px;
-  border: 1px solid;
-  display: inline-block;
-  color: white;
-}
-
-.winnerCard {
+.gameStatus {
   margin-top: 40px;
   padding: 20px;
-  border: 1px solid;
+  border-radius: 4px;
   display: inline-block;
+  border: 1px solid;
   color: white;
+}
+
+.history {
+  margin: 0px;
 }
