@@ -3,62 +3,31 @@
 }
 
 body {
+  background-color: wheat;
   font-family: sans-serif;
   margin: 20px;
   padding: 0;
 }
 
-h1 {
-  margin-top: 0;
-  font-size: 22px;
-}
-
-h2 {
-  margin-top: 0;
-  font-size: 20px;
-}
-
-h3 {
-  margin-top: 0;
-  font-size: 18px;
-}
-
-h4 {
-  margin-top: 0;
-  font-size: 16px;
-}
-
-h5 {
-  margin-top: 0;
-  font-size: 14px;
-}
-
-h6 {
-  margin-top: 0;
-  font-size: 12px;
-}
-
-code {
-  font-size: 1.2em;
-}
-
-ul {
-  padding-left: 20px;
+.container {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
 }
 
 .square {
   background: #fff;
   border: 1px solid #999;
   float: left;
-  font-size: 24px;
+  font-size: 48px;
   font-weight: bold;
-  line-height: 34px;
-  height: 34px;
+  line-height: 60px;
+  height: 60px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 34px;
+  width: 60px;
 }
 
 .board-row:after {
@@ -66,4 +35,27 @@ ul {
   content: '';
   display: table;
 }
+.game {
+  min-width: 400px;
+  padding: 30px;
+  background-color: rgb(150, 94, 60);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.playerInfo {
+  margin-bottom: 40px;
+  padding: 20px;
+  border: 1px solid;
+  display: inline-block;
+  color: white;
+}
+
+.winnerCard {
+  margin-top: 40px;
+  padding: 20px;
+  border: 1px solid;
+  display: inline-block;
+  color: white;
 }
