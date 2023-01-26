@@ -71,7 +71,8 @@ export default function Game() {
   const winner = calculateWinner(currentSquares, players)
   function jumpTo(nextMove) {
     setCurrentMove(nextMove);
-    nextMove % 2 === 0 ? setCurrentPlayer(players[0]) : setCurrentPlayer(players[1])
+    // since game always start with player1, currentPlayer will be nextMove % 2
+    setCurrentPlayer(players[nextMove % 2]);
   }
 
   const moves = history.map((squares, move) => {
