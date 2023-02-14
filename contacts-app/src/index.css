@@ -235,7 +235,7 @@ i {
 }
 
 #sidebar nav a.pending {
-  color: hsl(224, 98%, 58%);
+  background: hsl(38, 100%, 78%);
 }
 
 #detail {
